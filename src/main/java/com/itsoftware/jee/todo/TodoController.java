@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes("name")
 public class TodoController {
 
-	TodoService todoService;
-	
+	private final TodoDAOImpl todoDAOImpl;
+
 	@Autowired
-	public TodoController(TodoService todoService) {
-		this.todoService = todoService;
+	public TodoController(TodoDAOImpl todoDAOImpl) {
+		this.todoDAOImpl = todoDAOImpl;
 	}
 	
 	@InitBinder
@@ -36,8 +36,8 @@ public class TodoController {
 	}
 	
 	@RequestMapping(value = "/listTodos", method = RequestMethod.GET)
-	public String getTodos(ModelMap model) {
-		model.addAttribute("listTodos", todoService.getTodoByUser("jan.kowalski"));
+	public String getTodo(@RequestParam int id, ModelMap model) {
+		model.addAttribute("listTodos", todoDAOImpl.getTodo(id));
 		return "list-todo";
 	}
 	
@@ -52,14 +52,14 @@ public class TodoController {
 		if(result.hasErrors()) {
 			return "todo";
 		}
-		todoService.addTodo("jan.kowalski", todo.getDescription(), todo.getTargetDate());
+		todoDAOImpl.addTodo("jan.kowalski", todo.getDescription(), todo.getTargetDate());
 		model.clear();
 		return "redirect:listTodos";
 	}
 	
 	@RequestMapping(value="/edit-todo", method = RequestMethod.GET)    
     public String edit(@RequestParam int id, ModelMap model){    
-        Todo todo = todoService.retrieveTodo(id);
+        Todo todo = todoDAOImpl.retrieveTodo(id);
         model.addAttribute("todo",todo);  
         return "edit-todo-form";    
     }
@@ -69,7 +69,7 @@ public class TodoController {
 		if(result.hasErrors()) {
 			return "edit-todo-form";
 		}
-		todoService.updateTodo(todo.getId(), todo.getDescription(), todo.getTargetDate());
+		todoDAOImpl.updateTodo(todo.getId(), todo.getDescription(), todo.getTargetDate());
         System.out.println(todo.toString());
 //        model.clear();
         return "redirect:listTodos";    
@@ -77,7 +77,7 @@ public class TodoController {
 	
 	@RequestMapping(value = "/deleteTodo", method = RequestMethod.GET)
 	public String deleteTodo(@RequestParam int id, ModelMap model) {
-		todoService.deleteTodoById(id);
+		todoDAOImpl.deleteTodoById(id);
 		model.clear();
 		return "redirect:listTodos";
 	}

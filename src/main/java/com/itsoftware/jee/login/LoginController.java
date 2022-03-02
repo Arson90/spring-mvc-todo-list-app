@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes("name")
 public class LoginController {
 	
-	LoginService loginService;
+	private final LoginService loginService;
 	
 	@Autowired
 	public LoginController(LoginService loginService) {

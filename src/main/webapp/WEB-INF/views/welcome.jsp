@@ -9,6 +9,5 @@
 <body>
 	<p>Welcome ${name}. You have been logged.</p>
 	<p>Now, you can <a href="/listTodos">manage your todos.</a></p>
-	
 </body>
 </html>
