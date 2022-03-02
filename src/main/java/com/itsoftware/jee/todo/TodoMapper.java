@@ -10,10 +10,10 @@ public class TodoMapper implements RowMapper<Todo> {
     public Todo mapRow(ResultSet rs, int rowNum) throws SQLException {
         Todo todo = new Todo();
         todo.setId(rs.getInt("id"));
-        todo.setUser(rs.getString("user"));
+        todo.setUserName(rs.getString("user_name"));
         todo.setDescription(rs.getString("description"));
-        todo.setTargetDate(rs.getDate("targetDate"));
-        todo.setDone(rs.getBoolean("isDone"));
+        todo.setTargetDate(rs.getDate("target_date"));
+        todo.setDone(rs.getBoolean("is_done"));
 
         return todo;
     }

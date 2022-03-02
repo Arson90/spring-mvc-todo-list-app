@@ -36,8 +36,8 @@ public class TodoController {
 	}
 	
 	@RequestMapping(value = "/listTodos", method = RequestMethod.GET)
-	public String getTodo(@RequestParam int id, ModelMap model) {
-		model.addAttribute("listTodos", todoDAOImpl.getTodo(id));
+	public String getTodo(ModelMap model) {
+		model.addAttribute("listTodos", todoDAOImpl.getAllTodos());
 		return "list-todo";
 	}
 	
@@ -46,38 +46,37 @@ public class TodoController {
 		model.addAttribute("todo", new Todo());
 		return "todo";
 	}
-	
+
 	@RequestMapping(value = "/addTodo", method = RequestMethod.POST)
 	public String addTodo(@Valid Todo todo, BindingResult result, ModelMap model) {
 		if(result.hasErrors()) {
 			return "todo";
 		}
-		todoDAOImpl.addTodo("jan.kowalski", todo.getDescription(), todo.getTargetDate());
+		todoDAOImpl.addTodo(todo);
 		model.clear();
 		return "redirect:listTodos";
 	}
-	
-	@RequestMapping(value="/edit-todo", method = RequestMethod.GET)    
-    public String edit(@RequestParam int id, ModelMap model){    
-        Todo todo = todoDAOImpl.retrieveTodo(id);
-        model.addAttribute("todo",todo);  
-        return "edit-todo-form";    
+
+	@RequestMapping(value="/edit-todo", method = RequestMethod.GET)
+    public String edit(@RequestParam int id, ModelMap model){
+        Todo todo = todoDAOImpl.getTodo(id);
+        model.addAttribute("todo",todo);
+        return "edit-todo-form";
     }
-	
-	@RequestMapping(value="/edit-todo", method = RequestMethod.POST)    
-    public String edit(@Valid Todo todo, BindingResult result, ModelMap model){    
+
+	@RequestMapping(value="/edit-todo", method = RequestMethod.POST)
+    public String edit(@Valid Todo todo, BindingResult result, ModelMap model){
 		if(result.hasErrors()) {
 			return "edit-todo-form";
 		}
-		todoDAOImpl.updateTodo(todo.getId(), todo.getDescription(), todo.getTargetDate());
-        System.out.println(todo.toString());
-//        model.clear();
-        return "redirect:listTodos";    
-    }   
-	
+		todoDAOImpl.updateTodo(todo);
+        model.clear();
+        return "redirect:listTodos";
+    }
+
 	@RequestMapping(value = "/deleteTodo", method = RequestMethod.GET)
 	public String deleteTodo(@RequestParam int id, ModelMap model) {
-		todoDAOImpl.deleteTodoById(id);
+		todoDAOImpl.deleteTodo(id);
 		model.clear();
 		return "redirect:listTodos";
 	}

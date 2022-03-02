@@ -28,7 +28,7 @@
 				<c:forEach items="${listTodos}" var="todo">
 					<tr>
 						<td>${todo.id}</td>
-						<td>${todo.user}</td>
+						<td>${todo.userName}</td>
 						<td>${todo.description}</td>
 						<td><fmt:formatDate pattern="dd/MM/yyyy" value="${todo.targetDate}" /></td>
 						<td>${todo.done}</td>

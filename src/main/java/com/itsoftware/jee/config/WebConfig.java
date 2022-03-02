@@ -27,7 +27,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource =
-                new DriverManagerDataSource("jdbc:mysql://localhost:3306/test", "test", "test");
+                new DriverManagerDataSource("jdbc:mysql://localhost:3306/test", "webstudent", "webstudent");
         driverManagerDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         return driverManagerDataSource;
     }

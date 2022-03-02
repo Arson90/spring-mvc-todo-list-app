@@ -6,8 +6,7 @@ import javax.validation.constraints.Size;
 
 public class Todo {
 	private int id;
-	private String user;
-	
+	private String userName;
 	@Size(min = 1, message = "Enter at least 1 Character.")
 	private String description;
 	private Date targetDate;
@@ -17,9 +16,9 @@ public class Todo {
 		
 	}
 	
-	public Todo(int id, String user, String description, Date targetDate, boolean isDone) {
+	public Todo(int id, String userName, String description, Date targetDate, boolean isDone) {
 		this.id = id;
-		this.user = user;
+		this.userName = userName;
 		this.description = description;
 		this.targetDate = targetDate;
 		this.isDone = isDone;
@@ -33,12 +32,12 @@ public class Todo {
 		this.id = id;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getDescription() {
@@ -67,7 +66,7 @@ public class Todo {
 
 	@Override
 	public String toString() {
-		return String.format("Todo [id=%s, user=%s, description=%s, targetDate=%s, isDone=%s]", id, user, description,
+		return String.format("Todo [id=%s, user=%s, description=%s, targetDate=%s, isDone=%s]", id, userName, description,
 				targetDate, isDone);
 	}
 
