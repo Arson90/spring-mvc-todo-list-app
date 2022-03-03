@@ -11,11 +11,11 @@
 		<div class="container">
 			<h1>Add a Todo</h1>
 			<form:form action="addTodo" method="post" modelAttribute="todo">
-			    <fieldset class="form-group">
-                	<form:label path="userName">User Name</form:label>
-                	<form:input path="userName" type="text" class="form-control" value="${name}" readonly="true"/>
-                	<form:errors path="userName" cssClass="text-warning" />
-                </fieldset>
+			    	<fieldset class="form-group">
+                			<form:label path="userName">User Name</form:label>
+                			<form:input path="userName" type="text" class="form-control" value="${name}" readonly="true"/>
+                			<form:errors path="userName" cssClass="text-warning" />
+                		</fieldset>
 
 				<fieldset class="form-group">
 					<form:label path="description">Description</form:label>
