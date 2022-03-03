@@ -1,9 +1,0 @@
-com/itsoftware/jee/config/WebConfig.class
-com/itsoftware/jee/todo/TodoDAO.class
-com/itsoftware/jee/todo/TodoDAOImpl.class
-com/itsoftware/jee/login/LoginController.class
-com/itsoftware/jee/login/LoginService.class
-com/itsoftware/jee/config/AppInitializer.class
-com/itsoftware/jee/todo/TodoMapper.class
-com/itsoftware/jee/todo/Todo.class
-com/itsoftware/jee/todo/TodoController.class

@@ -1,9 +1,0 @@
-/home/arek/IdeaProjects/spring-mvc-todo-list-app/src/main/java/com/itsoftware/jee/login/LoginController.java
-/home/arek/IdeaProjects/spring-mvc-todo-list-app/src/main/java/com/itsoftware/jee/todo/TodoMapper.java
-/home/arek/IdeaProjects/spring-mvc-todo-list-app/src/main/java/com/itsoftware/jee/todo/TodoDAO.java
-/home/arek/IdeaProjects/spring-mvc-todo-list-app/src/main/java/com/itsoftware/jee/todo/TodoDAOImpl.java
-/home/arek/IdeaProjects/spring-mvc-todo-list-app/src/main/java/com/itsoftware/jee/login/LoginService.java
-/home/arek/IdeaProjects/spring-mvc-todo-list-app/src/main/java/com/itsoftware/jee/todo/Todo.java
-/home/arek/IdeaProjects/spring-mvc-todo-list-app/src/main/java/com/itsoftware/jee/config/AppInitializer.java
-/home/arek/IdeaProjects/spring-mvc-todo-list-app/src/main/java/com/itsoftware/jee/config/WebConfig.java
-/home/arek/IdeaProjects/spring-mvc-todo-list-app/src/main/java/com/itsoftware/jee/todo/TodoController.java
