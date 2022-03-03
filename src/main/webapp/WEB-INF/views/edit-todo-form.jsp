@@ -13,10 +13,10 @@
 			<form:form action="edit-todo" method="post" modelAttribute="todo">
 				<form:hidden path="id"/>
 				<fieldset class="form-group">
-                    <form:label path="userName">User Name</form:label>
-                    <form:input path="userName" type="text" class="form-control" value="${name}" readonly="true"/>
-                    <form:errors path="userName" cssClass="text-warning" />
-                </fieldset>
+                    			<form:label path="userName">User Name</form:label>
+                   			 <form:input path="userName" type="text" class="form-control" value="${name}" readonly="true"/>
+                   			 <form:errors path="userName" cssClass="text-warning" />
+               			 </fieldset>
 
 				<fieldset class="form-group">
 					<form:label path="description">Description</form:label>
