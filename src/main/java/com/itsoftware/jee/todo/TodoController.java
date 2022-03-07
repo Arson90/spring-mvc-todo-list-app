@@ -7,6 +7,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -36,8 +39,9 @@ public class TodoController {
 	}
 	
 	@RequestMapping(value = "/listTodos", method = RequestMethod.GET)
-	public String getTodo(ModelMap model) {
-		model.addAttribute("listTodos", todoDAOImpl.getAllTodos());
+	public String getTodo(@RequestParam int pageNumber, ModelMap model) {
+		model.addAttribute("listTodos", todoDAOImpl.getAllTodos(PageRequest.of(pageNumber-1,10)));
+		model.addAttribute("page", todoDAOImpl.countingPages());
 		return "list-todo";
 	}
 	

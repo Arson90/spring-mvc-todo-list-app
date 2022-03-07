@@ -6,13 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Todo list</title>
-	<link rel="stylesheet" href="webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    		        rel="stylesheet"
+    		        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+    		        crossorigin="anonymous">
 </head>
 <body class="bg-success p-2 text-dark bg-opacity-25">
 	<div class="container">
 		<h2>Hi ${name}</h2>
+		<caption>Todos are:</caption>
 		<table class="table table-striped">
-			<caption>Todos are:</caption>
 			<thead>
 				<tr>
 					<th>Id</th>
@@ -43,8 +46,12 @@
 		</table>
 		<div>
 			<a type="button" class="btn btn-success" href="/addTodo">Add new todo</a>
+		</div><br>
+		<div>
+		    <c:forEach var="i" begin="1" end="${page}" step="1">
+		        <a type="button" class="btn btn-primary" href="/listTodos?pageNumber=${i}">${i}</a>
+		    </c:forEach>
 		</div>
-		
 	</div>
 	<script src="webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
 	<script>
@@ -52,7 +59,6 @@
 			format : 'dd/mm/yyyy'
 		});
 	</script>
-	<script src="webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
 	<script src="webjars/jquery/3.6.0/jquery.min.js"></script>
 </body>
 </html>

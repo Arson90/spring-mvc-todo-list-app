@@ -1,12 +1,15 @@
 package com.itsoftware.jee.todo;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
 import java.util.List;
 
 public interface TodoDAO {
 
     Todo getTodo(int id);
 
-    List<Todo> getAllTodos();
+    List<Todo> getAllTodos(Pageable pageable);
 
     int addTodo(Todo todo);
 
