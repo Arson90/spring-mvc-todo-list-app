@@ -16,11 +16,11 @@
 			<form:form action="edit-todo" method="post" modelAttribute="todo">
 				<form:hidden path="id"/>
 				<fieldset class="form-group">
-                    <form:label path="userName">User Name</form:label>
-                    <form:input path="userName" type="text" class="form-control" value="${name}" readonly="true"/>
-                    <form:errors path="userName" cssClass="text-warning" />
-                </fieldset><br>
-
+          <form:label path="userName">User Name</form:label>
+          <form:input path="userName" type="text" class="form-control" value="${name}" readonly="true"/>
+          <form:errors path="userName" cssClass="text-warning" />
+        </fieldset><br>
+    
 				<fieldset class="form-group">
 					<form:label path="description">Description</form:label>
 					<form:input path="description" type="text" class="form-control" required="required"/>
@@ -35,8 +35,8 @@
 				<button type="submit" class="btn btn-success">Save</button><br><br>
 			</form:form>
 			<div>
-			    <a class="btn btn-success" href="/listTodos?pageNumber=${currentPageNumber}&sort=${sort}" role="button">Back To Todo List </a>
-            </div>
+			  <a class="btn btn-success" href="/listTodos?pageNumber=${currentPageNumber}&sort=${sort}" role="button">Back To Todo List </a>
+      </div>
 		</div>
 
 		<script src="webjars/jquery/3.6.0/jquery.min.js"></script>
