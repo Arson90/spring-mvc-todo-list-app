@@ -34,7 +34,7 @@
 				<button type="submit" class="btn btn-success">Add</button><br><br>
 			</form:form>
 			<div>
-                <a class="btn btn-success" href="listTodos" role="button">Back To Todo List </a>
+                <a class="btn btn-success" href="/listTodos?pageNumber=${currentPageNumber}&sort=${sort}" role="button">Back To Todo List </a>
             </div>
 		</div>
 

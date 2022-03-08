@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@SessionAttributes("name")
+@SessionAttributes(value = {"name", "currentPageNumber", "sort"})
 public class TodoController {
 
 	private final TodoDAOImpl todoDAOImpl;
