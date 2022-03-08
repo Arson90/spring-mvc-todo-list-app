@@ -39,9 +39,11 @@ public class TodoController {
 	}
 	
 	@RequestMapping(value = "/listTodos", method = RequestMethod.GET)
-	public String getTodo(@RequestParam int pageNumber, ModelMap model) {
-		model.addAttribute("listTodos", todoDAOImpl.getAllTodos(PageRequest.of(pageNumber-1,10)));
+	public String getTodo(@RequestParam int pageNumber, @RequestParam String sort, ModelMap model) {
+		model.addAttribute("listTodos", todoDAOImpl.getAllTodos(PageRequest.of(pageNumber-1,10, Sort.by(sort))));
 		model.addAttribute("page", todoDAOImpl.countingPages());
+		model.addAttribute("currentPageNumber", pageNumber);
+		model.addAttribute("sort", sort);
 		return "list-todo";
 	}
 	

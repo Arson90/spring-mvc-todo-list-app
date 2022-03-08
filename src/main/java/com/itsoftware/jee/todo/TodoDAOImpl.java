@@ -25,7 +25,8 @@ public class TodoDAOImpl implements TodoDAO{
 
 	@Override
 	public List<Todo> getAllTodos(Pageable pageable) {
-		String sql = "SELECT * FROM todo ORDER BY user_name LIMIT " + pageable.getPageSize() + " " + "OFFSET " + pageable.getOffset();
+		String sortBy = pageable.getSort().iterator().next().getProperty();
+		String sql = "SELECT * FROM todo ORDER BY " + sortBy + " LIMIT " + pageable.getPageSize() + " OFFSET " + pageable.getOffset();
 		return jdbcTemplate.query(sql, new TodoMapper());
 	}
 

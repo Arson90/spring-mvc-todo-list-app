@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,17 @@
 </head>
 <body class="bg-success p-2 text-dark bg-opacity-25">
 	<div class="container">
-		<h2>Hi ${name}</h2>
+		<h2>Hi ${name}</h2><br>
+		<form action="/listTodos" method="get">
+		    <input type="hidden" name="pageNumber" value="${currentPageNumber}" />
+            <label for="sort">Sort by:</label>
+            <select id="sort" name="sort">
+                <option value="id">Id</option>
+                <option value="user_name">User name</option>
+                <option value="target_date">Target date</option>
+            </select>
+            <input type="submit" value="Sort"/>
+        </form><br>
 		<caption>Todos are:</caption>
 		<table class="table table-striped">
 			<thead>
@@ -49,7 +60,7 @@
 		</div><br>
 		<div>
 		    <c:forEach var="i" begin="1" end="${page}" step="1">
-		        <a type="button" class="btn btn-primary" href="/listTodos?pageNumber=${i}">${i}</a>
+		        <a type="button" class="btn btn-primary" href="/listTodos?pageNumber=${i}&sort=${sort}">${i}</a>
 		    </c:forEach>
 		</div>
 	</div>
