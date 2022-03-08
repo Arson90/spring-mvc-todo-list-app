@@ -14,6 +14,9 @@
 		<div class="container">
 			<h1>Edit a Todo</h1><br><hr>
 			<form:form action="edit-todo" method="post" modelAttribute="todo">
+			    <input type="hidden" name="name" value="${name}"/>
+                <input type="hidden" name="pageNumber" value="${currentPageNumber}"/>
+                <input type="hidden" name="sort" value="${sort}"/>
 				<form:hidden path="id"/>
 				<fieldset class="form-group">
           <form:label path="userName">User Name</form:label>
@@ -35,7 +38,8 @@
 				<button type="submit" class="btn btn-success">Save</button><br><br>
 			</form:form>
 			<div>
-			  <a class="btn btn-success" href="/listTodos?pageNumber=${currentPageNumber}&sort=${sort}" role="button">Back To Todo List </a>
+
+			  <a class="btn btn-success" href="/list-todos?name=${name}&pageNumber=${currentPageNumber}&sort=${sort}" role="button">Back To Todo List </a>
       </div>
 		</div>
 

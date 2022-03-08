@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@SessionAttributes(value = {"name", "currentPageNumber", "sort"})
+//@SessionAttributes(value = {"name", "currentPageNumber", "sort"})
 public class TodoController {
 
 	private final TodoDAOImpl todoDAOImpl;
@@ -38,53 +38,66 @@ public class TodoController {
 				dateFormat, false));
 	}
 	
-	@RequestMapping(value = "/listTodos", method = RequestMethod.GET)
-	public String getTodo(@RequestParam int pageNumber, @RequestParam String sort, ModelMap model) {
+	@RequestMapping(value = "/list-todos", method = RequestMethod.GET)
+	public String getTodo(@RequestParam String name, @RequestParam int pageNumber, @RequestParam String sort, ModelMap model) {
 		model.addAttribute("listTodos", todoDAOImpl.getAllTodos(PageRequest.of(pageNumber-1,10, Sort.by(sort))));
 		model.addAttribute("page", todoDAOImpl.countingPages());
+		model.addAttribute("name", name);
 		model.addAttribute("currentPageNumber", pageNumber);
 		model.addAttribute("sort", sort);
 		return "list-todo";
 	}
 	
-	@RequestMapping(value = "/addTodo", method = RequestMethod.GET)
-	public String showFormAddTodo(ModelMap model) {
+	@RequestMapping(value = "/add-todo", method = RequestMethod.GET)
+	public String showFormAddTodo(@RequestParam String name, @RequestParam int pageNumber, @RequestParam String sort, ModelMap model) {
 		model.addAttribute("todo", new Todo());
+		model.addAttribute("name", name);
+		model.addAttribute("currentPageNumber", pageNumber);
+		model.addAttribute("sort", sort);
 		return "todo";
 	}
 
-	@RequestMapping(value = "/addTodo", method = RequestMethod.POST)
-	public String addTodo(@Valid Todo todo, BindingResult result, ModelMap model) {
+	@RequestMapping(value = "/add-todo", method = RequestMethod.POST)
+	public String addTodo(@RequestParam String name, @RequestParam int pageNumber, @RequestParam String sort, @Valid Todo todo, BindingResult result, ModelMap model) {
 		if(result.hasErrors()) {
 			return "todo";
 		}
 		todoDAOImpl.addTodo(todo);
-		model.clear();
-		return "redirect:listTodos";
+		model.addAttribute("name", name);
+		model.addAttribute("pageNumber", pageNumber);
+		model.addAttribute("sort", sort);
+		return "redirect:list-todos";
 	}
 
 	@RequestMapping(value="/edit-todo", method = RequestMethod.GET)
-    public String edit(@RequestParam int id, ModelMap model){
+    public String edit(@RequestParam int id, @RequestParam String name, @RequestParam int pageNumber, @RequestParam String sort, ModelMap model){
         Todo todo = todoDAOImpl.getTodo(id);
         model.addAttribute("todo",todo);
+		model.addAttribute("name", name);
+		model.addAttribute("currentPageNumber", pageNumber);
+		model.addAttribute("sort", sort);
         return "edit-todo-form";
     }
 
 	@RequestMapping(value="/edit-todo", method = RequestMethod.POST)
-    public String edit(@Valid Todo todo, BindingResult result, ModelMap model){
+    public String edit(@RequestParam String name, @RequestParam int pageNumber, @RequestParam String sort, @Valid Todo todo, BindingResult result, ModelMap model){
 		if(result.hasErrors()) {
 			return "edit-todo-form";
 		}
 		todoDAOImpl.updateTodo(todo);
-        model.clear();
-        return "redirect:listTodos";
+		model.addAttribute("name", name);
+		model.addAttribute("pageNumber", pageNumber);
+		model.addAttribute("sort", sort);
+        return "redirect:list-todos";
     }
 
-	@RequestMapping(value = "/deleteTodo", method = RequestMethod.GET)
-	public String deleteTodo(@RequestParam int id, ModelMap model) {
+	@RequestMapping(value = "/delete-todo", method = RequestMethod.GET)
+	public String deleteTodo(@RequestParam int id, @RequestParam String name, @RequestParam int pageNumber, @RequestParam String sort, ModelMap model) {
 		todoDAOImpl.deleteTodo(id);
-		model.clear();
-		return "redirect:listTodos";
+		model.addAttribute("name", name);
+		model.addAttribute("pageNumber", pageNumber);
+		model.addAttribute("sort", sort);
+		return "redirect:list-todos";
 	}
 }
 
