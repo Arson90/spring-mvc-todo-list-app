@@ -13,12 +13,15 @@
 	<body class="bg-success p-2 text-dark bg-opacity-25">
 		<div class="container">
 			<h1>Add a Todo</h1><br><hr>
-			<form:form action="addTodo" method="post" modelAttribute="todo">
-			  <fieldset class="form-group">
-          <form:label path="userName">User Name</form:label>
-          <form:input path="userName" type="text" class="form-control" value="${name}" readonly="true"/>
-          <form:errors path="userName" cssClass="text-warning" />
-        </fieldset><br>
+			<form:form action="/add-todo" method="post" modelAttribute="todo">
+			    <input type="hidden" name="name" value="${name}"/>
+                <input type="hidden" name="pageNumber" value="${currentPageNumber}"/>
+                <input type="hidden" name="sort" value="${sort}"/>
+			    <fieldset class="form-group">
+                    <form:label path="userName">User Name</form:label>
+                    <form:input path="userName" type="text" class="form-control" value="${name}" readonly="true"/>
+                    <form:errors path="userName" cssClass="text-warning" />
+                </fieldset><br>
 
 				<fieldset class="form-group">
 					<form:label path="description">Description</form:label>
@@ -34,7 +37,7 @@
 				<button type="submit" class="btn btn-success">Add</button><br><br>
 			</form:form>
 			<div>
-        <a class="btn btn-success" href="/listTodos?pageNumber=${currentPageNumber}&sort=${sort}" role="button">Back To Todo List </a>
+        <a class="btn btn-success" href="/list-todos?name=${name}&pageNumber=${currentPageNumber}&sort=${sort}" role="button">Back To Todo List </a>
       </div>
 		</div>
 

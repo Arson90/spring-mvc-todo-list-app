@@ -15,7 +15,8 @@
 <body class="bg-success p-2 text-dark bg-opacity-25">
 	<div class="container">
 		<h2>Hi ${name}</h2><br>
-		<form action="/listTodos" method="get">
+		<form action="/list-todos" method="get">
+		    <input type="hidden" name="name" value="${name}"/>
 		    <input type="hidden" name="pageNumber" value="${currentPageNumber}" />
             <label for="sort">Sort by:</label>
             <select id="sort" name="sort">
@@ -47,20 +48,20 @@
 						<td><fmt:formatDate pattern="dd/MM/yyyy" value="${todo.targetDate}" /></td>
 						<td>${todo.done}</td>
 						<td>
-							<a type="button" class="btn btn-primary" href="/edit-todo?id=${todo.id}">Edit</a>
+							<a type="button" class="btn btn-primary" href="/edit-todo?id=${todo.id}&name=${name}&pageNumber=${currentPageNumber}&sort=${sort}">Edit</a>
 							|
-							<a type="button" class="btn btn-danger" href="/deleteTodo?id=${todo.id}">Delete</a>
+							<a type="button" class="btn btn-danger" href="/delete-todo?id=${todo.id}&name=${name}&pageNumber=${currentPageNumber}&sort=${sort}">Delete</a>
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<div>
-			<a type="button" class="btn btn-success" href="/addTodo">Add new todo</a>
+			<a type="button" class="btn btn-success" href="/add-todo?name=${name}&pageNumber=${currentPageNumber}&sort=${sort}">Add new todo</a>
 		</div><br>
 		<div>
 		    <c:forEach var="i" begin="1" end="${page}" step="1">
-		        <a type="button" class="btn btn-primary" href="/listTodos?pageNumber=${i}&sort=${sort}">${i}</a>
+		        <a type="button" class="btn btn-primary" href="/list-todos?name=${name}&pageNumber=${i}&sort=${sort}">${i}</a>
 		    </c:forEach>
 		</div>
 	</div>

@@ -13,7 +13,13 @@
 <body class="bg-success p-2 text-dark bg-opacity-25">
     <div class="container">
         <p>Welcome ${name}. You have been logged.</p>
-        <p>Now, you can <a href="/listTodos?pageNumber=1&sort=id">manage your todos.</a></p>
+        <form action="/list-todos" method="get">
+            <input type="hidden" name="name" value="${name}"/>
+            <input type="hidden" name="pageNumber" value="1"/>
+            <input type="hidden" name="sort" value="id"/>
+            <input type="submit" value="Manage your todos" />
+        </from>
+            <p>Now, you can <a href="/listTodos?pageNumber=1&sort=id">Manage your todos.</a></p>
     </div>
 </body>
 </html>
