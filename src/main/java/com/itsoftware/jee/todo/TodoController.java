@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -18,10 +17,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+
 
 @Controller
-//@SessionAttributes(value = {"name", "currentPageNumber", "sort"})
 public class TodoController {
 
 	private final TodoDAOImpl todoDAOImpl;
@@ -30,14 +28,14 @@ public class TodoController {
 	public TodoController(TodoDAOImpl todoDAOImpl) {
 		this.todoDAOImpl = todoDAOImpl;
 	}
-	
+
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(
 				dateFormat, false));
 	}
-	
+
 	@RequestMapping(value = "/list-todos", method = RequestMethod.GET)
 	public String getTodo(@RequestParam String name, @RequestParam int pageNumber, @RequestParam String sort, ModelMap model) {
 		model.addAttribute("listTodos", todoDAOImpl.getAllTodos(PageRequest.of(pageNumber-1,10, Sort.by(sort))));
@@ -47,7 +45,7 @@ public class TodoController {
 		model.addAttribute("sort", sort);
 		return "list-todo";
 	}
-	
+
 	@RequestMapping(value = "/add-todo", method = RequestMethod.GET)
 	public String showFormAddTodo(@RequestParam String name, @RequestParam int pageNumber, @RequestParam String sort, ModelMap model) {
 		model.addAttribute("todo", new Todo());
