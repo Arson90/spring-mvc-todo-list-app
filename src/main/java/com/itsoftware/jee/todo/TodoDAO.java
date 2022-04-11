@@ -15,4 +15,6 @@ public interface TodoDAO {
     int updateTodo(Todo todo);
 
     int deleteTodo(int id);
+
+    int countingPages();
 }

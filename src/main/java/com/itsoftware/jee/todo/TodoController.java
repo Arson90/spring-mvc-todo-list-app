@@ -18,15 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 public class TodoController {
 
-	private final TodoDAOImpl todoDAOImpl;
+	private final TodoDAO todoDAO;
 
 	@Autowired
-	public TodoController(TodoDAOImpl todoDAOImpl) {
-		this.todoDAOImpl = todoDAOImpl;
+	public TodoController(TodoDAO todoDAO) {
+		this.todoDAO = todoDAO;
 	}
 
 	@InitBinder
@@ -38,8 +37,8 @@ public class TodoController {
 
 	@RequestMapping(value = "/list-todos", method = RequestMethod.GET)
 	public String getTodo(@RequestParam String name, @RequestParam int pageNumber, @RequestParam String sort, ModelMap model) {
-		model.addAttribute("listTodos", todoDAOImpl.getAllTodos(PageRequest.of(pageNumber-1,10, Sort.by(sort))));
-		model.addAttribute("page", todoDAOImpl.countingPages());
+		model.addAttribute("listTodos", todoDAO.getAllTodos(PageRequest.of(pageNumber-1,10, Sort.by(sort))));
+		model.addAttribute("page", todoDAO.countingPages());
 		model.addAttribute("name", name);
 		model.addAttribute("currentPageNumber", pageNumber);
 		model.addAttribute("sort", sort);
@@ -60,7 +59,7 @@ public class TodoController {
 		if(result.hasErrors()) {
 			return "todo";
 		}
-		todoDAOImpl.addTodo(todo);
+		todoDAO.addTodo(todo);
 		model.addAttribute("name", name);
 		model.addAttribute("pageNumber", pageNumber);
 		model.addAttribute("sort", sort);
@@ -69,7 +68,7 @@ public class TodoController {
 
 	@RequestMapping(value="/edit-todo", method = RequestMethod.GET)
     public String edit(@RequestParam int id, @RequestParam String name, @RequestParam int pageNumber, @RequestParam String sort, ModelMap model){
-        Todo todo = todoDAOImpl.getTodo(id);
+        Todo todo = todoDAO.getTodo(id);
         model.addAttribute("todo",todo);
 		model.addAttribute("name", name);
 		model.addAttribute("currentPageNumber", pageNumber);
@@ -82,7 +81,7 @@ public class TodoController {
 		if(result.hasErrors()) {
 			return "edit-todo-form";
 		}
-		todoDAOImpl.updateTodo(todo);
+		todoDAO.updateTodo(todo);
 		model.addAttribute("name", name);
 		model.addAttribute("pageNumber", pageNumber);
 		model.addAttribute("sort", sort);
@@ -91,7 +90,7 @@ public class TodoController {
 
 	@RequestMapping(value = "/delete-todo", method = RequestMethod.GET)
 	public String deleteTodo(@RequestParam int id, @RequestParam String name, @RequestParam int pageNumber, @RequestParam String sort, ModelMap model) {
-		todoDAOImpl.deleteTodo(id);
+		todoDAO.deleteTodo(id);
 		model.addAttribute("name", name);
 		model.addAttribute("pageNumber", pageNumber);
 		model.addAttribute("sort", sort);

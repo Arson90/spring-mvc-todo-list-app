@@ -13,13 +13,14 @@
 <body class="bg-success p-2 text-dark bg-opacity-25">
     <div class="container">
         <p><font color="red">${errorMessage}</font></p>
-        	<form action="welcome" method="post">
+        	<form action="/login" method="post">
         		<label>User Name</label>
         		<input type="text" name="username" />
         		<br><br>
         		<label>Password</label>
         		<input type="password" name="password"/>
         		<br><br>
+        		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         		<input type="submit" value="Submit"/>
         	</form>
     </div>
