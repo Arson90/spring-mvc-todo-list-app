@@ -19,6 +19,8 @@
             <input type="hidden" name="sort" value="id"/>
             <input type="submit" value="Manage your todos" />
         </from>
+        <br><br>
+         <a href="/console">Go to H2 DB console</a>
     </div>
 </body>
 </html>
