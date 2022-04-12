@@ -31,7 +31,7 @@
 				
 				<fieldset class="form-group">
 					<form:label path="targetDate">Target Date</form:label>
-					<form:input path="targetDate" type="text" class="form-control" required="required"/>
+					<form:input path="targetDate" type="text" class="form-control" required="required" value="dd/mm/yyyy"/>
 					<form:errors path="targetDate" cssClass="text-warning" />
 				</fieldset><br><hr>
 				<button type="submit" class="btn btn-success">Add</button><br><br>

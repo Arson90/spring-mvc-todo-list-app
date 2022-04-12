@@ -1,7 +1,6 @@
 package com.itsoftware.jee.todo;
 
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -16,4 +15,6 @@ public interface TodoDAO {
     int updateTodo(Todo todo);
 
     int deleteTodo(int id);
+
+    int countingPages();
 }

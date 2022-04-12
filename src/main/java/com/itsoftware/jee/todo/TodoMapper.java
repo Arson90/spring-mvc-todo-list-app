@@ -14,7 +14,6 @@ public class TodoMapper implements RowMapper<Todo> {
         todo.setDescription(rs.getString("description"));
         todo.setTargetDate(rs.getDate("target_date"));
         todo.setDone(rs.getBoolean("is_done"));
-
         return todo;
     }
 }

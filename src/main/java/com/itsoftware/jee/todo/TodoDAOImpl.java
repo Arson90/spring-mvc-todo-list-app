@@ -30,6 +30,7 @@ public class TodoDAOImpl implements TodoDAO{
 		return jdbcTemplate.query(sql, new TodoMapper());
 	}
 
+	@Override
 	public int countingPages(){
 		String sql = "SELECT COUNT(*) FROM todo";
 		double count = jdbcTemplate.queryForObject(sql, Double.class) / 10;

@@ -19,7 +19,6 @@
             <input type="hidden" name="sort" value="id"/>
             <input type="submit" value="Manage your todos" />
         </from>
-            <p>Now, you can <a href="/listTodos?pageNumber=1&sort=id">Manage your todos.</a></p>
     </div>
 </body>
 </html>
